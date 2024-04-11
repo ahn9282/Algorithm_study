@@ -1,2 +1,2 @@
 # Algorithm_study
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub v3](https://github.com/raphaelheinz/LeetHub-3.0)
+leet Code 문제와 프로그래머스 문제 풀이 모음
