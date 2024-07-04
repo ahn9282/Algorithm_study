@@ -1,7 +1,16 @@
 package study;
 
+import study.basic.LinkedList;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        LinkedList myLinkedList = new LinkedList(1);
+        myLinkedList.append(2);
+        myLinkedList.printList();
+        System.out.println(myLinkedList.removeFirst());
+        System.out.println(myLinkedList.removeFirst());
+        System.out.println(myLinkedList.removeFirst());
+
     }
 }
