@@ -1,5 +1,6 @@
 package study;
 
+import org.w3c.dom.Node;
 import study.basic.LinkedList;
 
 public class Main {
@@ -13,4 +14,7 @@ public class Main {
         System.out.println(myLinkedList.removeFirst());
 
     }
+
+
+
 }

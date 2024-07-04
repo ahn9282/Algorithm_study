@@ -43,7 +43,7 @@ public  class LinkedList {
             head = newNode;
             tail = newNode;
         } else {
-            newNode.setNext(head);
+            newNode.next = head;
             head = newNode;
         }
         length++;
@@ -173,21 +173,18 @@ public  class LinkedList {
     public void getLength() {
         System.out.println("length = " + length);
     }
+    static class Node {
+        public int value;
+        Node next;
+
+        public Node(int value) {
+            this.value = value;
+        }
+
+        public int getV() {
+            return value;
+        }
+    }
 }
 
 
-  class Node {
-    public int value;
-    Node next;
-
-    public Node(int value) {
-        this.value = value;
-    }
-
-    public void setNext(Node node) {
-        this.next = node;
-    }
-    public int getV(){
-        return value;
-    }
-     }
