@@ -1,4 +1,4 @@
-package study.basic;
+package study.datastructure;
 
 import java.util.HashMap;
 

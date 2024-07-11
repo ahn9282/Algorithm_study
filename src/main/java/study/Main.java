@@ -1,7 +1,6 @@
 package study;
 
-import org.w3c.dom.Node;
-import study.basic.LinkedList;
+import study.datastructure.LinkedList;
 
 public class Main {
     public static void main(String[] args) {

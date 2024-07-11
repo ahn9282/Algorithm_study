@@ -1,4 +1,4 @@
-package study.basic;
+package study.datastructure;
 
 public  class LinkedList {
     private Node head;
