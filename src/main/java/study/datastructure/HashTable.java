@@ -1,5 +1,6 @@
 package study.datastructure;
 
+import java.sql.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,10 @@ public class HashTable {
         int[] result1 = subarraySum(nums1, target1);
         System.out.println("[" + result1[0] + ", " + result1[1] + "]");
 
+
+        System.out.println(longestConsecutiveSequence( new int[] {1, 2, 2, 3, 4}));
+        System.out.println(longestConsecutiveSequence( new int[] {1, 2, 3, 4, 5}));
+        System.out.println(longestConsecutiveSequence( new int[] {2, 2, 2, 2, 2}));
     }
     private int size ;
     private Node[] dataMap;
@@ -173,6 +178,62 @@ public class HashTable {
         }
 
         return new int[]{};
+    }
+
+    public static List<Integer> removeDuplicates(List<Integer> myList) {
+        HashSet<Integer> set = new HashSet<>();
+        int size = 0;
+        List<Integer> list = new ArrayList<>();
+        for (Integer i : myList) {
+            set.add(i);
+            if( size != set.size()) list.add(i);
+            size = set.size();
+        }
+        return list;
+    }
+    public static boolean hasUniqueChars(String string) {
+        Set<Character> charSet = new HashSet<>();
+        for (char ch : string.toCharArray()) {
+            if (charSet.contains(ch)) {
+                return false;
+            }
+            charSet.add(ch);
+        }
+        return true;
+    }
+    public static List<int[]> findPairs(int[] arr1, int[] arr2, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        List<int[]> list = new ArrayList<>();
+        for (int i : arr1) {
+            map.put( target - i, i);
+
+        }
+        for (int i : arr2) {
+            if (map.containsKey(i)) {
+                list.add(new int[]{map.get(i), i});
+            }
+        }
+        return list;
+
+    }
+    public static int longestConsecutiveSequence(int[] nums) {
+        Set<Integer> numSet = new HashSet<>();
+        for (int num : nums) {
+            numSet.add(num);
+        }
+        int longestStreak = 0;
+        for (int num : numSet) {
+            if (!numSet.contains(num - 1)) {
+                int currentNum = num;
+                int currentStreak = 1;
+                while (numSet.contains(currentNum + 1)) {
+                    currentNum++;
+                    currentStreak++;
+                }
+                longestStreak = Math.max(longestStreak, currentStreak);
+            }
+        }
+        return longestStreak;
     }
 
 }
