@@ -2,44 +2,40 @@ import java.util.*;
 
 class Solution {
     public int solution(String dartResult) {
-            int answer = 0;
-        
-        String[] dart = dartResult.split("");
-        int[] score = new int[3];
-        
-        int idx = -1;
-        
-        for(int i = 0 ; i < dart.length; i++){
+          int answer = 0;
+        int[] scores = Arrays.stream(dartResult.split("[SDT*#]"))
+            .filter(e -> ! e.isEmpty()).mapToInt(e -> Integer.parseInt(e)).toArray();
             
-            if(dart[i].matches("[0-9]")){
-                 idx++;
-                score[idx] = Integer.parseInt(dart[i]);
-                 
-                if(dart[i+1].matches("[0-9]")){
-                    score[idx] = 10;
-                    i++;
-                }
-              
-            }
-            
-            if(dart[i].equals("D")){
-                score[idx] = (int)Math.pow(score[idx],2);
-            }
-             if(dart[i].equals("T")){
-                 score[idx] = (int)Math.pow(score[idx],3);
-             }
-             if(dart[i].equals("*")){
-                 score[idx] *= 2 ;
-                 if(idx - 1 >=0) score[idx - 1] *=2;
-             }
-             if(dart[i].equals("#")){
-                 score[idx]  *= -1; 
-             }
-           
+        StringBuilder sb = new StringBuilder();
+       
+       for (int i = 0; i < scores.length; i++) {
+            sb.append(scores[i]);
+           if(i < 2){
+               sb.append("|");
+           }
         }
-            for(int n : score){
-                answer +=n;
+        String splitCond = sb.toString();
+        String[] condArr = dartResult.split(splitCond);
+        
+        for(int i =1; i <= 3; i++){
+              if(condArr[i].contains("D")){
+                scores[i - 1] = (int)Math.pow(scores[i - 1],2);
             }
+             if(condArr[i].contains("T")){
+                 scores[i - 1] = (int)Math.pow(scores[i - 1],3);
+             }
+             if(condArr[i].contains("*")){
+                 scores[i - 1] *= 2;
+                 if(i -2 >=0){
+                     scores[i - 2] *= 2; 
+                 }
+             }
+             if(condArr[i].contains("#")){
+                 scores[i - 1] *= -1;
+             }
+            
+        }
+        answer = Arrays.stream(scores).sum();
         
         return answer;
     }
