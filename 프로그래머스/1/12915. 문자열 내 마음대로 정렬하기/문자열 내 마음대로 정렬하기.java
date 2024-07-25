@@ -1,27 +1,17 @@
+
 import java.util.*;
 
 class Solution {
-    public    String[]  solution(String[] strings, int n) {
-        String[] answer = new String[strings.length];
-        Map<Character, List<String>> map = new TreeMap<>();
-        for(String str : strings){
-        char c = str.charAt(n);
-            if(map.containsKey(c)){
-                map.get(c).add(str);
-            }else{
-                map.put(c, new ArrayList<String>());
-                 map.get(c).add(str);
-            }
+    public String[] solution(String[] strings, int n) {
+        String[] answer = {};
+        ArrayList<String> arr = new ArrayList<>();
+        for (int i = 0; i < strings.length; i++) {
+            arr.add("" + strings[i].charAt(n) + strings[i]);
         }
-        int idx = 0;
-        for (List<String> list : map.values()) {
-          if(list.size()>1){
-             Collections.sort(list, (a, b) -> a.compareTo(b));
-          }
-            for(String s : list){
-                answer[idx] = s;
-                idx ++;
-            }
+        Collections.sort(arr);
+        answer = new String[arr.size()];
+        for (int i = 0; i < arr.size(); i++) {
+            answer[i] = arr.get(i).substring(1, arr.get(i).length());
         }
         return answer;
     }
