@@ -1,8 +1,8 @@
 class Solution {
     public long solution(long n) {
         long answer = 0;
-        for(long i = 1; i <= n/2 + 1; i++){
-            if(i * i == n)return (i+1)*(i+1);
+        if((long)Math.sqrt(n) * (long)Math.sqrt(n) == n){
+            return ((long)Math.sqrt(n)+1)*((long)Math.sqrt(n)+1);
         }
         return -1;
     }
