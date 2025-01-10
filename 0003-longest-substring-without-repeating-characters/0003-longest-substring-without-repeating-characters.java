@@ -1,23 +1,21 @@
 class Solution {
     public int lengthOfLongestSubstring(String s) {
-         int result = 0;
-            
-            if(s.length() <=1)return s.length();
-            for(int i = 0 ; i < s.length()-1; i++){
-                boolean[] exist = new boolean[128];
-                char start = s.charAt(i);
-                int val = 0;
-                for (int j = i; j < s.length(); j++) {
-                    char end = s.charAt(j);
-                    if(exist[end]){
-                        result = Math.max(result, val);
-                        break;
-                    }
-                        exist[end] = true;
-                        val++;
-                         if(j==s.length() - 1)result = Math.max(result, val);
-                }
+       boolean[] exist = new boolean[128];
+        int result = 0, explore = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            // 중복 문자가 있으면 윈도우 시작 위치를 조정
+            while (exist[c]) {
+                exist[s.charAt(explore)] = false;
+                explore++;
             }
-            return result;
+
+            exist[c] = true;
+            result = Math.max(result, i - explore + 1);
+        }
+
+        return result;
         }
 }
